@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "fieldName": "First Name",
+        "type": "name",
+        "value": "", 
+        "placeholder": "First Name"
+    },
+    {
+        "id": 1,
+        "fieldName": "Last Name",
+        "type": "name",
+        "value": "", 
+        "placeholder": "Last Name"
+    },
+    {
+      "id": 2,
+      "fieldName": "Email",
+      "type": "email",
+      "value": "", 
+      "placeholder": "Email"
+    },
+    {
+      "id": 3,
+      "fieldName": "City",
+      "type": "text",
+      "value": "", 
+      "placeholder": "City"
+    },
+    {
+      "id": 4,
+      "fieldName": "State",
+      "type": "text",
+      "value": "", 
+      "placeholder": "State"
+    }
+  ]
+  
