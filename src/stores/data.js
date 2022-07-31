@@ -1,12 +1,16 @@
 import { defineStore } from "pinia";
 
-export const store = defineStore("store", {
+export const store = defineStore({
+	id: "data",
 	state: () => ({
 		storedData: {},
 	}),
+	getters: {},
 	actions: {
-		async saveData() {
-			console.log("poop");
+		updateStoredData(data) {
+			localStorage.setItem("data", JSON.stringify(data));
+			this.storedData = data;
+			console.log(this.storedData);
 		},
 	},
 });

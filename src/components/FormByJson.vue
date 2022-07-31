@@ -1,3 +1,28 @@
+<script setup>
+//Imports the JSON file with the given parameters from the assets folder
+import FormSchema from "../assets/FormSchema.json";
+import { store } from "@/stores/data";
+import { onBeforeMount } from "vue";
+
+const myJson = FormSchema;
+let formData = {};
+const { updateStoredData } = store();
+
+onBeforeMount(() => {
+  myJson.map(
+    (resp) => (formData = { ...formData, [resp.fieldName]: resp.value })
+  );
+  console.log(myJson);
+});
+const submitData = (event) => {
+  event.preventDefault();
+
+  console.log(JSON.parse(localStorage.getItem("data")));
+
+  updateStoredData(JSON.parse(localStorage.getItem("data")));
+};
+</script>
+
 <template>
   <div class="form-wrapper">
     <form>
@@ -14,42 +39,7 @@
   </div>
 </template>
 
-<script>
-//Imports the JSON file with the given parameters from the assets folder
-import FormSchema from "../assets/FormSchema.json";
-import { mapState } from "pinia";
-import { store } from "../stores/data";
 
-export default {
-  data() {
-    return {
-      myJson: FormSchema,
-      formData: {},
-    };
-  },
-  created: function () {
-    this.myJson.map(
-      (resp) =>
-        (this.formData = { ...this.formData, [resp.fieldName]: resp.value })
-    );
-  },
-  methods: {
-    submitData(event) {
-      event.preventDefault();
-
-      if (!localStorage.getItem("data")) {
-        localStorage.setItem("data", JSON.stringify(this.formData));
-      }
-      store.storedData = JSON.parse(localStorage.getItem("data"));
-      console.log(this.storedData);
-      console.log(JSON.parse(localStorage.getItem("data")));
-    },
-  },
-  computed: {
-    ...mapState(store, ["storedData"]),
-  },
-};
-</script>
 
 <style scoped>
 .form-wrapper {

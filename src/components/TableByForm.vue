@@ -1,5 +1,18 @@
+<script setup>
+import FormSchema from "../assets/FormSchema.json";
+import { store } from "@/stores/data";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
+
+const { storedData } = storeToRefs(store());
+const myJson = FormSchema;
+onMounted(() => {
+  console.log("1");
+});
+</script>
+
 <template>
-  <div class="loading" v-if="!storedData.City">
+  <div class="loading" v-if="!storedData">
     <h1>LOADING...</h1>
   </div>
   <div class="table-wrapper" v-else>
@@ -17,18 +30,7 @@
     </table>
   </div>
 </template>
-<script>
-import FormSchema from "../assets/FormSchema.json";
 
-export default {
-  data() {
-    return {
-      myJson: FormSchema,
-      storedData: {},
-    };
-  },
-};
-</script>
 <style>
 h1 {
   color: white;
