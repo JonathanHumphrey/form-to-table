@@ -40,10 +40,9 @@ export default {
       if (!localStorage.getItem("data")) {
         localStorage.setItem("data", JSON.stringify(this.formData));
       }
-      this.storedData = JSON.parse(localStorage.getItem("data"));
+      store.storedData = JSON.parse(localStorage.getItem("data"));
       console.log(this.storedData);
-      console.log(localStorage);
-      store.saveData();
+      console.log(JSON.parse(localStorage.getItem("data")));
     },
   },
   computed: {

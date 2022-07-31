@@ -1,5 +1,8 @@
 <template>
-  <div class="table-wrapper">
+  <div class="loading" v-if="!storedData.City">
+    <h1>LOADING...</h1>
+  </div>
+  <div class="table-wrapper" v-else>
     <table>
       <thead>
         <th v-for="field in myJson" :key="field.id">
@@ -27,6 +30,9 @@ export default {
 };
 </script>
 <style>
+h1 {
+  color: white;
+}
 .table-wrapper {
   background-color: #21c2f8;
   border-radius: 1rem;
