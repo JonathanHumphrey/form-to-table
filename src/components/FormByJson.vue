@@ -9,23 +9,32 @@ let formData = {};
 const { updateStoredData } = store();
 
 onBeforeMount(() => {
-  myJson.map(
-    (resp) => (formData = { ...formData, [resp.fieldName]: resp.value })
-  );
-  console.log(myJson);
+  myJson.map((resp) => {
+    formData = { ...formData, [resp.fieldName]: resp.value };
+  });
 });
+// First pass solution as this is fucking WEIRD, idk why the console isn't printing from the data.js state function. I am just going to leave this as is for now.
 const submitData = (event) => {
   event.preventDefault();
 
-  console.log(JSON.parse(localStorage.getItem("data")));
+  formData["First Name"] = event.target[0].value;
+  formData["Last Name"] = event.target[1].value;
+  formData.Email = event.target[2].value;
+  formData.City = event.target[3].value;
+  formData.State = event.target[4].value;
 
-  updateStoredData(JSON.parse(localStorage.getItem("data")));
+  /* localStorage.setItem("data", JSON.stringify(formData));
+  console.log(JSON.parse(localStorage.getItem("data")));
+*/
+  console.log(formData);
+
+  updateStoredData(formData);
 };
 </script>
 
 <template>
   <div class="form-wrapper">
-    <form>
+    <form @submit.prevent="submitData($event)">
       <div class="form-data" v-for="data in myJson" v-bind:key="data.id">
         <label class="form-label"> {{ data.fieldName }} </label>
         <input
@@ -34,7 +43,7 @@ const submitData = (event) => {
           :placeholder="data.placeholder"
         />
       </div>
-      <button type="submit" @click="submitData($event)">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>

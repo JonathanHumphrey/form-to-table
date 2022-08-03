@@ -8,9 +8,10 @@ export const store = defineStore({
 	getters: {},
 	actions: {
 		updateStoredData(data) {
-			localStorage.setItem("data", JSON.stringify(data));
+			console.log(data);
 			this.storedData = data;
 			console.log(this.storedData);
+			localStorage.setItem("data", JSON.stringify(this.storedData));
 		},
 	},
 });

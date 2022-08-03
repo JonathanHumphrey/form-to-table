@@ -5,10 +5,9 @@ import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
 const { storedData } = storeToRefs(store());
+
 const myJson = FormSchema;
-onMounted(() => {
-  console.log("1");
-});
+onMounted(() => {});
 </script>
 
 <template>
