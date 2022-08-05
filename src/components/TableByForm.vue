@@ -21,9 +21,21 @@ onMounted(() => {});
           {{ field.fieldName }}
         </th>
       </thead>
-      <tbody>
-        <td v-for="(item, i) in storedData" :key="i">
-          {{ item }}
+      <tbody v-for="(object, i) in storedData" :key="i">
+        <td >
+          {{ object.fName }} 
+        </td>
+        <td>
+          {{ object.lName }}
+        </td>
+        <td>
+          {{ object.email}}
+        </td>
+        <td>
+          {{ object.city}}
+        </td>
+        <td>
+          {{ object.state}}
         </td>
       </tbody>
     </table>

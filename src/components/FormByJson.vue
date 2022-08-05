@@ -2,34 +2,50 @@
 //Imports the JSON file with the given parameters from the assets folder
 import FormSchema from "../assets/FormSchema.json";
 import { store } from "@/stores/data";
-import { onBeforeMount } from "vue";
+//import { onBeforeMount } from "vue";
 
 const myJson = FormSchema;
 let formData = {};
 const { updateStoredData } = store();
 
-onBeforeMount(() => {
+/* onBeforeMount(() => {
   myJson.map((resp) => {
     formData = { ...formData, [resp.fieldName]: resp.value };
   });
-});
+}); */
 // First pass solution as this is fucking WEIRD, idk why the console isn't printing from the data.js state function. I am just going to leave this as is for now.
 const submitData = (event) => {
   event.preventDefault();
+  let dataBlob = {
+    fName: '',
+    lName:'',
+    email: '',
+    city: '',
+    state: ''
+  }
 
-  formData["First Name"] = event.target[0].value;
-  formData["Last Name"] = event.target[1].value;
-  formData.Email = event.target[2].value;
-  formData.City = event.target[3].value;
-  formData.State = event.target[4].value;
-
+  dataBlob.fName = event.target[0].value;
+  dataBlob.lName = event.target[1].value;
+  dataBlob.email = event.target[2].value;
+  dataBlob.city = event.target[3].value;
+  dataBlob.state = event.target[4].value;
+  
+  clearForm(event);
   /* localStorage.setItem("data", JSON.stringify(formData));
   console.log(JSON.parse(localStorage.getItem("data")));
 */
-  console.log(formData);
-
-  updateStoredData(formData);
+  console.log(dataBlob)
+  updateStoredData(dataBlob);
 };
+
+//Simple function to clear the form without a refreh using default
+const clearForm = (event) => {
+event.target[0].value = ''
+event.target[1].value = ''
+event.target[2].value = ''
+event.target[3].value = ''
+event.target[4].value = ''
+}
 </script>
 
 <template>

@@ -3,15 +3,14 @@ import { defineStore } from "pinia";
 export const store = defineStore({
 	id: "data",
 	state: () => ({
-		storedData: {},
+		storedData: [],
 	}),
 	getters: {},
 	actions: {
 		updateStoredData(data) {
-			console.log(data);
-			this.storedData = data;
-			console.log(this.storedData);
-			localStorage.setItem("data", JSON.stringify(this.storedData));
+			this.storedData.push(data)
+			console.log(this.storedData[0]);
+			//localStorage.setItem("data", JSON.stringify(this.storedData));
 		},
 	},
 });
