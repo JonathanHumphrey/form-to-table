@@ -2,9 +2,6 @@
   <div>
     <FormByJson />
     <TableByForm />
-    <div class="button">
-      <button @click="clearData()">Clear Data</button>
-    </div>
   </div>
 </template>
 
@@ -20,9 +17,7 @@ export default {
   },
   methods: {
     clearData() {
-      console.log("test");
-      localStorage.clear();
-      console.log(localStorage.length);
+      
     },
   },
 };

@@ -12,5 +12,8 @@ export const store = defineStore({
 			console.log(this.storedData[0]);
 			//localStorage.setItem("data", JSON.stringify(this.storedData));
 		},
-	},
+		deleteStorage(){
+			this.storedData = []
+		}
+		},
 });

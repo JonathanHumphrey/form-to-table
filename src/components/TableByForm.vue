@@ -5,13 +5,19 @@ import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
 const { storedData } = storeToRefs(store());
+const { deleteStorage } = store();
 
 const myJson = FormSchema;
+
+const clearData = () => {
+  deleteStorage()
+}
+
 onMounted(() => {});
 </script>
 
 <template>
-  <div class="loading" v-if="!storedData">
+  <div class="loading" v-if="storedData.length === 0">
     <h1>LOADING...</h1>
   </div>
   <div class="table-wrapper" v-else>
@@ -39,6 +45,9 @@ onMounted(() => {});
         </td>
       </tbody>
     </table>
+    <div class="button">
+      <button @click="clearData()">Clear Data</button>
+    </div>
   </div>
 </template>
 
@@ -50,6 +59,7 @@ h1 {
   background-color: #21c2f8;
   border-radius: 1rem;
   margin: auto;
+  margin-top: 2rem;
   width: 75rem;
   padding: 1rem;
 }
@@ -64,5 +74,16 @@ table {
 thead {
   border-bottom: solid black 0.1rem;
   width: 75%;
+}
+button {
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  border: none;
+  margin-top: 1rem;
+  background-color: #7f8c8d;
+}
+button:hover {
+  background-color: #f3f7f8;
 }
 </style>

@@ -57,6 +57,7 @@ event.target[4].value = ''
           :type="data.type"
           v-model="formData[data.fieldName]"
           :placeholder="data.placeholder"
+          required
         />
       </div>
       <button type="submit">Submit</button>
