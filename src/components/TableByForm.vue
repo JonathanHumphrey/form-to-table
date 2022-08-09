@@ -10,8 +10,8 @@ const { deleteStorage } = store();
 const myJson = FormSchema;
 
 const clearData = () => {
-  deleteStorage()
-}
+  deleteStorage();
+};
 
 onMounted(() => {});
 </script>
@@ -28,20 +28,20 @@ onMounted(() => {});
         </th>
       </thead>
       <tbody v-for="(object, i) in storedData" :key="i">
-        <td >
-          {{ object.fName }} 
+        <td>
+          {{ object.fName }}
         </td>
         <td>
           {{ object.lName }}
         </td>
         <td>
-          {{ object.email}}
+          {{ object.email }}
         </td>
         <td>
-          {{ object.city}}
+          {{ object.city }}
         </td>
         <td>
-          {{ object.state}}
+          {{ object.state }}
         </td>
       </tbody>
     </table>
@@ -85,5 +85,9 @@ button {
 }
 button:hover {
   background-color: #f3f7f8;
+}
+td {
+  text-align: left;
+  border: solid black;
 }
 </style>
