@@ -18,7 +18,7 @@ onMounted(() => {});
 
 <template>
   <div class="loading" v-if="storedData.length === 0">
-    <h1>LOADING...</h1>
+    <h1>Enter Entries Above</h1>
   </div>
   <div class="table-wrapper" v-else>
     <table>
@@ -34,7 +34,7 @@ onMounted(() => {});
         <td>
           {{ object.lName }}
         </td>
-        <td>
+        <td class="email-field">
           {{ object.email }}
         </td>
         <td>
@@ -73,6 +73,7 @@ table {
 }
 thead {
   border-bottom: solid black 0.1rem;
+  text-align: left;
   width: 75%;
 }
 button {
@@ -88,6 +89,6 @@ button:hover {
 }
 td {
   text-align: left;
-  border: solid black;
+  
 }
 </style>

@@ -1,11 +1,13 @@
 <script setup>
 //Imports the JSON file with the given parameters from the assets folder
 import FormSchema from "../assets/FormSchema.json";
+import PopoutModal from "./PopoutModal.vue"
 import { store } from "@/stores/data";
 //import { onBeforeMount } from "vue";
 
 const myJson = FormSchema;
 let formData = {};
+let showModal = store()
 const { updateStoredData } = store();
 
 /* onBeforeMount(() => {
@@ -40,16 +42,24 @@ const submitData = (event) => {
 
 //Simple function to clear the form without a refreh using default
 const clearForm = (event) => {
-event.target[0].value = ''
-event.target[1].value = ''
-event.target[2].value = ''
-event.target[3].value = ''
-event.target[4].value = ''
+  event.target[0].value = ''
+  event.target[1].value = ''
+  event.target[2].value = ''
+  event.target[3].value = ''
+  event.target[4].value = ''
 }
+
+
 </script>
 
 <template>
   <div class="form-wrapper">
+    <div class="info" @mouseover="showModal = true" @mouseleave="showModal = false">
+      <p>*</p>
+    </div>
+    <div class="modal" v-show="showModal === true">
+      <PopoutModal />
+    </div>
     <form @submit.prevent="submitData($event)">
       <div class="form-data" v-for="data in myJson" v-bind:key="data.id">
         <label class="form-label"> {{ data.fieldName }} </label>
@@ -69,6 +79,7 @@ event.target[4].value = ''
 
 <style scoped>
 .form-wrapper {
+  position: relative;
   border-radius: 2rem;
   padding: 1rem;
   background-color: #7f8c8d;
@@ -83,6 +94,16 @@ event.target[4].value = ''
 }
 .form-label {
   align-self: flex-start;
+}
+.info{
+  width: 4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+p{
+  color: white;
 }
 input {
   width: 15rem;

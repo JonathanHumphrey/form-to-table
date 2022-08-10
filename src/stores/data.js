@@ -4,6 +4,7 @@ export const store = defineStore({
 	id: "data",
 	state: () => ({
 		storedData: [],
+		showModal: false
 	}),
 	getters: {},
 	actions: {
